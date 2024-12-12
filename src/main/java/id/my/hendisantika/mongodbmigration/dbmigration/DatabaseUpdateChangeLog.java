@@ -3,6 +3,7 @@ package id.my.hendisantika.mongodbmigration.dbmigration;
 import id.my.hendisantika.mongodbmigration.domain.Employee;
 import io.mongock.api.annotations.ChangeUnit;
 import io.mongock.api.annotations.Execution;
+import io.mongock.api.annotations.RollbackExecution;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 /**
@@ -28,6 +29,14 @@ public class DatabaseUpdateChangeLog {
     public void updateEmployees() {
         template.findAll(Employee.class).forEach(employee -> {
             employee.setSalary(100.0);
+            template.save(employee);
+        });
+    }
+
+    @RollbackExecution
+    public void rollback() {
+        template.findAll(Employee.class).forEach(employee -> {
+            employee.setSalary(0.0);
             template.save(employee);
         });
     }
