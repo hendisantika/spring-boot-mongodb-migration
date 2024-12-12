@@ -1,8 +1,10 @@
 package id.my.hendisantika.mongodbmigration.dbmigration;
 
+import id.my.hendisantika.mongodbmigration.domain.Department;
 import id.my.hendisantika.mongodbmigration.domain.Employee;
 import io.mongock.api.annotations.ChangeUnit;
 import io.mongock.api.annotations.Execution;
+import io.mongock.api.annotations.RollbackExecution;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
 import java.util.List;
@@ -36,4 +38,11 @@ public class DatabaseInitChangeLog {
         List<Employee> employees = Stream.concat(initHrEmployees().stream(), initRadEmployees().stream()).toList();
         template.insertAll(employees);
     }
+
+    @RollbackExecution
+    public void rollback() {
+        template.remove(new Department());
+        template.remove(new Employee());
+    }
+
 }
