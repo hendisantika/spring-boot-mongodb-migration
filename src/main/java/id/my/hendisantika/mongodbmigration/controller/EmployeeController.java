@@ -11,6 +11,8 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -41,5 +43,15 @@ public class EmployeeController {
     })
     public ResponseEntity<List<Employee>> getAllEmployees() {
         return new ResponseEntity<>(employeeRepository.findAll(), HttpStatus.OK);
+    }
+
+    @PostMapping()
+    @Operation(summary = "Add New Employee")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "201", description = "Saved superheroes list"),
+            @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
+    })
+    public ResponseEntity<Employee> createEmployee(@RequestBody Employee employee) {
+        return new ResponseEntity<>(employeeRepository.save(employee), HttpStatus.CREATED);
     }
 }
