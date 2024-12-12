@@ -99,4 +99,18 @@ public class DatabaseInitChangeLog {
 
         return hrEmployees;
     }
+
+    private List<Employee> initRadEmployees() {
+        List<Employee> radEmployees = new ArrayList<>();
+        Optional<Department> radDepartment = initDepartments().stream().filter(department -> department.getCode().equals("R&D")).findFirst();
+
+        radDepartment.ifPresent(department -> radEmployees.add(Employee.builder()
+                .firstName("Naobara")
+                .lastName("Kughisaki")
+                .email("naobara@yopmail.com")
+                .department(department)
+                .build()));
+
+        return radEmployees;
+    }
 }
