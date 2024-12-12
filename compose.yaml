@@ -1,1 +1,13 @@
 services:
+  mongodb:
+    image: mongo:8.0.1
+    ports:
+      - '27017:27017'
+    volumes:
+      - dbdata8:/data/db
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=yu7i
+      - MONGO_INITDB_ROOT_PASSWORD=53cret
+      - MONGO_INITDB_DATABASE=employee
+volumes:
+  dbdata8:
