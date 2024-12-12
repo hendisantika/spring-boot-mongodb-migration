@@ -1,7 +1,12 @@
 package id.my.hendisantika.mongodbmigration.dbmigration;
 
+import id.my.hendisantika.mongodbmigration.domain.Employee;
 import io.mongock.api.annotations.ChangeUnit;
+import io.mongock.api.annotations.Execution;
 import org.springframework.data.mongodb.core.MongoTemplate;
+
+import java.util.List;
+import java.util.stream.Stream;
 
 /**
  * Created by IntelliJ IDEA.
@@ -22,4 +27,13 @@ public class DatabaseInitChangeLog {
         this.template = template;
     }
 
+    @Execution
+    public void execute() {
+        // insert departments
+        template.insertAll(initDepartments());
+
+        // insert employees
+        List<Employee> employees = Stream.concat(initHrEmployees().stream(), initRadEmployees().stream()).toList();
+        template.insertAll(employees);
+    }
 }
