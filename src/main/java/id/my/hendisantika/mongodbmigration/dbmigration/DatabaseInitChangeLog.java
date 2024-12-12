@@ -7,8 +7,10 @@ import io.mongock.api.annotations.Execution;
 import io.mongock.api.annotations.RollbackExecution;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
 import java.util.stream.Stream;
 
 /**
@@ -75,4 +77,26 @@ public class DatabaseInitChangeLog {
         );
     }
 
+    private List<Employee> initHrEmployees() {
+        List<Employee> hrEmployees = new ArrayList<>();
+        Optional<Department> hrDepartment = initDepartments().stream().filter(department -> department.getCode().equals("HR")).findFirst();
+
+        if (hrDepartment.isPresent()) {
+            hrEmployees.add(Employee.builder()
+                    .firstName("Itadori")
+                    .lastName("Yuji")
+                    .email("yuji@yopmail.com")
+                    .department(hrDepartment.get())
+                    .build());
+
+            hrEmployees.add(Employee.builder()
+                    .firstName("Megumi")
+                    .lastName("Fushiguro")
+                    .email("megumi@yopmail.com")
+                    .department(hrDepartment.get())
+                    .build());
+        }
+
+        return hrEmployees;
+    }
 }
