@@ -1,10 +1,11 @@
 services:
   mongodb8:
     image: mongo:8.0.1
+    container_name: mongodb8
     ports:
       - '27017:27017'
     volumes:
-      - dbdata8:/data/db
+      - ./dbdata8:/data/db
     environment:
       - MONGO_INITDB_ROOT_USERNAME=yu7i
       - MONGO_INITDB_ROOT_PASSWORD=53cret
@@ -23,11 +24,13 @@ services:
       - ME_CONFIG_BASICAUTH_USERNAME=yu7i
       - ME_CONFIG_BASICAUTH_PASSWORD=53cret
     volumes:
-      - mongo_express
+      - ./mongo-express:/data/db
     ports:
       - "8002:8081"
     networks:
       - mongo
+    depends_on:
+      - mongodb8
 volumes:
   dbdata8:
 networks:
