@@ -39,7 +39,7 @@ public class DepartmentController {
     private final DepartmentRepository departmentRepository;
 
     @GetMapping()
-    @Operation(summary = "Get All Cars")
+    @Operation(summary = "Get All Department")
     @ApiResponses(value = {
             @ApiResponse(responseCode = "201", description = "Saved superheroes list"),
             @ApiResponse(responseCode = "500", description = "Internal server error", content = @Content)
