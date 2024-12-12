@@ -7,6 +7,7 @@ import io.mongock.api.annotations.Execution;
 import io.mongock.api.annotations.RollbackExecution;
 import org.springframework.data.mongodb.core.MongoTemplate;
 
+import java.util.Arrays;
 import java.util.List;
 import java.util.stream.Stream;
 
@@ -43,6 +44,35 @@ public class DatabaseInitChangeLog {
     public void rollback() {
         template.remove(new Department());
         template.remove(new Employee());
+    }
+
+    private List<Department> initDepartments() {
+        return Arrays.asList(
+                Department.builder()
+                        .name("Human Resource Management")
+                        .code("HR")
+                        .build(),
+                Department.builder()
+                        .code("R&D")
+                        .name("Research and Development (often abbreviated to R&D)")
+                        .build(),
+                Department.builder()
+                        .name("Prod")
+                        .code("Production")
+                        .build(),
+                Department.builder()
+                        .name("Sales")
+                        .code("Sales")
+                        .build(),
+                Department.builder()
+                        .name("Marketing")
+                        .code("Marketing")
+                        .build(),
+                Department.builder()
+                        .name("Finance")
+                        .code("Finance")
+                        .build()
+        );
     }
 
 }
