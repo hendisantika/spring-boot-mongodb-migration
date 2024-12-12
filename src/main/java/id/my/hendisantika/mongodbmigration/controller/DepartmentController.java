@@ -32,7 +32,7 @@ import java.util.List;
  * To change this template use File | Settings | File Templates.
  */
 @RestController
-@RequestMapping("/api/department")
+@RequestMapping("/api/departments")
 @RequiredArgsConstructor
 @Tag(name = "Department", description = "Department CRUD API with documentation annotations")
 public class DepartmentController {
