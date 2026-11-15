@@ -3,7 +3,7 @@
 [![Java CI with Maven](https://github.com/hendisantika/spring-boot-mongodb-migration/actions/workflows/maven.yml/badge.svg)](https://github.com/hendisantika/spring-boot-mongodb-migration/actions/workflows/maven.yml)
 ![Java](https://img.shields.io/badge/Java-25-orange?logo=openjdk)
 ![Spring Boot](https://img.shields.io/badge/Spring%20Boot-4.1.2-6DB33F?logo=springboot)
-![MongoDB](https://img.shields.io/badge/MongoDB-8.0-47A248?logo=mongodb)
+![MongoDB](https://img.shields.io/badge/MongoDB-9.0-47A248?logo=mongodb)
 
 A sample Spring Boot REST API that manages **employees** and **departments** in MongoDB and runs
 database migrations with [Mongock](https://mongock.io/).
@@ -14,11 +14,11 @@ database migrations with [Mongock](https://mongock.io/).
 |------------------|-----------------------------------------------|
 | Java             | 25 (Temurin)                                  |
 | Spring Boot      | 4.1.2 (Web, Data MongoDB, Validation)         |
-| Database         | MongoDB 8.0                                   |
+| Database         | MongoDB 9.0                                   |
 | Migration        | Mongock 5 (`mongodb-springdata-v4-driver`)    |
 | API docs         | springdoc-openapi (Swagger UI)                |
 | Build            | Maven Wrapper (`./mvnw`)                      |
-| Testing          | JUnit 5 + Testcontainers (MongoDB)            |
+| Testing          | JUnit 5 + Testcontainers (`mongo:9.0.8`)      |
 | Local infra      | Docker Compose (MongoDB + mongo-express)      |
 
 ## Prerequisites
